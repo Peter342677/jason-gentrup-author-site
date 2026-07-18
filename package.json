@@ -1,0 +1,33 @@
+{
+  "name": "jason-gentrup-author-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB -c yellow,cyan \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:client": "vite",
+    "dev:server": "nodemon server/index.js",
+    "build": "vite build",
+    "start": "node server/index.js",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "gsap": "^3.12.5",
+    "helmet": "^7.1.0",
+    "lenis": "^1.1.13",
+    "nodemailer": "^6.9.14",
+    "three": "^0.167.1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.4",
+    "vite": "^5.4.2"
+  }
+}
