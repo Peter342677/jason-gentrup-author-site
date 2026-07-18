@@ -295,14 +295,16 @@
   border-radius: 8px;
   padding: 0.65rem 1.3rem;
   margin-bottom: var(--space-sm);
+  width: 190px;
+  height: 60px;
   transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
 }
 
 .purchase-logo-chip img {
   display: block;
-  height: 30px;
-  width: auto;
-  max-width: 170px;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 .purchase-panel:hover .purchase-logo-chip {
