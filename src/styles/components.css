@@ -291,13 +291,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--cream);
-  border-radius: 8px;
-  padding: 0.65rem 1.3rem;
   margin-bottom: var(--space-sm);
   width: 190px;
   height: 60px;
-  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+  transition: transform var(--dur-fast) var(--ease-out), filter var(--dur-fast) var(--ease-out);
 }
 
 .purchase-logo-chip img {
@@ -309,7 +306,7 @@
 
 .purchase-panel:hover .purchase-logo-chip {
   transform: translateY(-3px);
-  box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.4);
+  filter: drop-shadow(0 8px 16px rgba(217, 164, 65, 0.35));
 }
 
 .purchase-panel p {
