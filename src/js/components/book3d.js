@@ -38,6 +38,7 @@ export async function initHeroBook() {
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(width, height);
+  renderer.domElement.style.touchAction = 'none';
   canvasHost.appendChild(renderer.domElement);
 
   const ambient = new THREE.AmbientLight(0xffffff, 0.65);
@@ -56,26 +57,86 @@ export async function initHeroBook() {
 
   const spineColor = new THREE.Color('#16283a');
   const pageColor = new THREE.Color('#efe6d4');
+  const pageColorDim = new THREE.Color('#e2d8c2');
 
-  const materials = [
-    new THREE.MeshStandardMaterial({ color: pageColor, roughness: 0.9 }), // right (pages)
-    new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.6 }), // left (spine)
-    new THREE.MeshStandardMaterial({ color: pageColor, roughness: 0.9 }), // top
-    new THREE.MeshStandardMaterial({ color: pageColor, roughness: 0.9 }), // bottom
-    new THREE.MeshStandardMaterial({ map: coverTexture, roughness: 0.45 }), // front cover
-    new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.5 }), // back
-  ];
+  const pageMat = new THREE.MeshStandardMaterial({ color: pageColor, roughness: 0.9 });
+  const spineMat = new THREE.MeshStandardMaterial({ color: spineColor, roughness: 0.6 });
 
-  const geometry = new THREE.BoxGeometry(bookWidth, bookHeight, bookDepth);
-  const book = new THREE.Mesh(geometry, materials);
-  book.rotation.y = -0.35;
-  scene.add(book);
+  // Root group — everything (cover, pages, block) tilts/floats/spins together.
+  const bookGroup = new THREE.Group();
+  bookGroup.rotation.y = -0.35;
+  scene.add(bookGroup);
 
+  // The page block: what's left once the front cover swings open.
+  const pagesGeometry = new THREE.BoxGeometry(bookWidth, bookHeight, bookDepth);
+  const pagesBlock = new THREE.Mesh(pagesGeometry, [
+    pageMat, // right
+    spineMat, // left (spine)
+    pageMat, // top
+    pageMat, // bottom
+    pageMat, // front — visible once the cover opens
+    spineMat, // back
+  ]);
+  bookGroup.add(pagesBlock);
+
+  // Front cover — a thin hinged box so it has a believable inside-cover face too.
+  const coverPivot = new THREE.Group();
+  coverPivot.position.set(-bookWidth / 2, 0, bookDepth / 2);
+  bookGroup.add(coverPivot);
+
+  const coverDepth = 0.03;
+  const coverGeometry = new THREE.BoxGeometry(bookWidth, bookHeight, coverDepth);
+  coverGeometry.translate(bookWidth / 2, 0, 0);
+  const coverMesh = new THREE.Mesh(coverGeometry, [
+    pageMat,
+    spineMat,
+    pageMat,
+    pageMat,
+    new THREE.MeshStandardMaterial({ map: coverTexture, roughness: 0.45 }), // outside
+    new THREE.MeshStandardMaterial({ color: pageColorDim, roughness: 0.9 }), // inside cover
+  ]);
+  coverPivot.add(coverMesh);
+
+  // A couple of fanned inner pages, revealed as the cover opens.
+  const pagePivots = [0.985, 0.965].map((zFactor, i) => {
+    const pivot = new THREE.Group();
+    pivot.position.set(-bookWidth / 2, 0, bookDepth * zFactor);
+    bookGroup.add(pivot);
+
+    const geo = new THREE.BoxGeometry(bookWidth * 0.985, bookHeight * 0.985, 0.012);
+    geo.translate((bookWidth * 0.985) / 2, 0, 0);
+    const mat = new THREE.MeshStandardMaterial({ color: i === 0 ? pageColor : pageColorDim, roughness: 0.95 });
+    const mesh = new THREE.Mesh(geo, mat);
+    pivot.add(mesh);
+    return pivot;
+  });
+
+  let isOpen = false;
+  const openTimeline = gsap.timeline({ paused: true })
+    .to(coverPivot.rotation, { y: -2.35, duration: 1.1, ease: 'power3.out' }, 0)
+    .to(pagePivots[0].rotation, { y: -1.3, duration: 1, ease: 'power3.out' }, 0.08)
+    .to(pagePivots[1].rotation, { y: -0.85, duration: 0.95, ease: 'power3.out' }, 0.16);
+
+  function setOpen(open) {
+    isOpen = open;
+    stage.classList.toggle('is-open', open);
+    if (open) openTimeline.play();
+    else openTimeline.reverse();
+  }
+
+  // Mouse-parallax tilt (suspended while dragging).
   let targetTiltX = 0;
   let targetTiltY = -0.35;
   let mouseInStage = false;
+  let isDragging = false;
+  let dragMoved = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let dragBaseRotX = 0;
+  let dragBaseRotY = 0;
 
   stage.addEventListener('mousemove', (e) => {
+    if (isDragging) return;
     const rect = stage.getBoundingClientRect();
     const relX = (e.clientX - rect.left) / rect.width - 0.5;
     const relY = (e.clientY - rect.top) / rect.height - 0.5;
@@ -88,12 +149,49 @@ export async function initHeroBook() {
     mouseInStage = false;
   });
 
+  stage.style.cursor = 'grab';
+
+  stage.addEventListener('pointerdown', (e) => {
+    stage.classList.add('has-interacted');
+    isDragging = true;
+    dragMoved = false;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    dragBaseRotX = bookGroup.rotation.x;
+    dragBaseRotY = bookGroup.rotation.y;
+    stage.style.cursor = 'grabbing';
+    stage.setPointerCapture(e.pointerId);
+  });
+
+  stage.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    const dx = e.clientX - dragStartX;
+    const dy = e.clientY - dragStartY;
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) dragMoved = true;
+    bookGroup.rotation.y = dragBaseRotY + dx * 0.012;
+    bookGroup.rotation.x = Math.max(-0.5, Math.min(0.5, dragBaseRotX - dy * 0.01));
+  });
+
+  function endDrag(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    stage.style.cursor = 'grab';
+    targetTiltY = bookGroup.rotation.y;
+    targetTiltX = bookGroup.rotation.x;
+    if (!dragMoved) setOpen(!isOpen);
+  }
+
+  stage.addEventListener('pointerup', endDrag);
+  stage.addEventListener('pointercancel', endDrag);
+
   let floatT = 0;
   function animate() {
     floatT += 0.01;
-    book.position.y = Math.sin(floatT) * 0.08;
-    book.rotation.x += (targetTiltX - book.rotation.x) * 0.06;
-    book.rotation.y += (targetTiltY + (mouseInStage ? 0 : Math.sin(floatT * 0.5) * 0.08) - book.rotation.y) * 0.06;
+    bookGroup.position.y = Math.sin(floatT) * 0.08;
+    if (!isDragging) {
+      bookGroup.rotation.x += (targetTiltX - bookGroup.rotation.x) * 0.06;
+      bookGroup.rotation.y += (targetTiltY + (mouseInStage ? 0 : Math.sin(floatT * 0.5) * 0.08) - bookGroup.rotation.y) * 0.06;
+    }
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
   }
@@ -105,8 +203,8 @@ export async function initHeroBook() {
     end: 'bottom top',
     scrub: 0.6,
     onUpdate: (self) => {
-      book.rotation.z = self.progress * 0.6;
-      book.position.x = self.progress * 1.4;
+      bookGroup.rotation.z = self.progress * 0.6;
+      bookGroup.position.x = self.progress * 1.4;
       renderer.domElement.style.opacity = String(1 - self.progress);
     },
   });

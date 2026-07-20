@@ -190,6 +190,40 @@
   transform: perspective(1200px) rotateY(-18deg) rotateX(4deg);
 }
 
+.hero-book-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 0.5rem;
+  transform: translateX(-50%);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  animation: hero-book-hint-in 1.2s 1.6s ease-out forwards;
+  transition: opacity var(--dur-med) var(--ease-out);
+}
+
+.hero-book-stage.has-interacted .hero-book-hint {
+  opacity: 0 !important;
+  animation: none;
+}
+
+@keyframes hero-book-hint-in {
+  to {
+    opacity: 0.7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-book-hint {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+
 /* About teaser (home) */
 .about-teaser .container {
   display: grid;
