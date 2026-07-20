@@ -48,8 +48,11 @@ export async function initHeroBook() {
   rim.position.set(-3, -1, -2);
   scene.add(ambient, key, rim);
 
-  const coverTexture = new THREE.TextureLoader().load('/assets/book-cover.jpg');
+  const textureLoader = new THREE.TextureLoader();
+  const coverTexture = textureLoader.load('/assets/book-cover-front.jpg');
   coverTexture.colorSpace = THREE.SRGBColorSpace;
+  const backCoverTexture = textureLoader.load('/assets/book-cover-back.jpg');
+  backCoverTexture.colorSpace = THREE.SRGBColorSpace;
 
   const bookWidth = 2.1;
   const bookHeight = 3.15;
@@ -69,13 +72,14 @@ export async function initHeroBook() {
 
   // The page block: what's left once the front cover swings open.
   const pagesGeometry = new THREE.BoxGeometry(bookWidth, bookHeight, bookDepth);
+  const backCoverMat = new THREE.MeshStandardMaterial({ map: backCoverTexture, roughness: 0.45 });
   const pagesBlock = new THREE.Mesh(pagesGeometry, [
     pageMat, // right
     spineMat, // left (spine)
     pageMat, // top
     pageMat, // bottom
     pageMat, // front — visible once the cover opens
-    spineMat, // back
+    backCoverMat, // back — the real back cover, visible while rotating the book
   ]);
   bookGroup.add(pagesBlock);
 
