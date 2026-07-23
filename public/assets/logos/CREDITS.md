@@ -8,6 +8,10 @@ Retailer logos used as "available on" badges, linking directly to the real produ
   channel preserved exactly) from Wikimedia Commons
   ("Barnes & Noble logo (2021).svg"),
   https://commons.wikimedia.org/wiki/File:Barnes_%26_Noble_logo_(2021).svg
+- `google-books.png` — Google Books logo (2020 mark), recolored to solid white (alpha
+  channel preserved exactly) from Wikimedia Commons
+  ("Google Books logo 2020.svg"),
+  https://commons.wikimedia.org/wiki/File:Google_Books_logo_2020.svg
 
-Both are trademarks of their respective owners, used here solely to identify the retailers
-where this book is actually sold.
+All are trademarks of their respective owners, used here solely to identify the retailers/
+platforms where this book is actually sold or can be read.

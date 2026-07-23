@@ -271,30 +271,8 @@
   position: relative;
 }
 
-.purchase-diptych::before {
-  content: '';
-  position: absolute;
-  top: 12%;
-  bottom: 12%;
-  left: 50%;
-  width: 1px;
-  background: linear-gradient(180deg, transparent, rgba(217, 164, 65, 0.4), transparent);
-  z-index: 1;
-}
-
-.purchase-diptych::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 9px;
-  height: 9px;
-  background: var(--gold);
-  transform: translate(-50%, -50%) rotate(45deg);
-  z-index: 1;
-}
-
 .purchase-panel {
+  position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -305,7 +283,35 @@
   transition: background var(--dur-med) var(--ease-out);
 }
 
+/* Diamond-seam divider between panels — scales to any panel count */
+.purchase-panel:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: 12%;
+  bottom: 12%;
+  right: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(217, 164, 65, 0.4), transparent);
+  z-index: 1;
+}
+
+.purchase-panel:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 9px;
+  height: 9px;
+  background: var(--gold);
+  transform: translate(50%, -50%) rotate(45deg);
+  z-index: 1;
+}
+
 .purchase-panel:nth-child(2) {
+  background: linear-gradient(180deg, var(--ink-2), var(--ink) 70%);
+}
+
+.purchase-panel:nth-child(3) {
   background: linear-gradient(195deg, var(--ink-2), var(--ink) 70%);
 }
 
@@ -619,14 +625,22 @@
     flex-direction: column;
   }
 
-  .purchase-diptych::before {
+  .purchase-panel:not(:last-child)::before {
     top: auto;
-    bottom: 50%;
+    bottom: 0;
     left: 12%;
     right: 12%;
     width: auto;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(217, 164, 65, 0.4), transparent);
+  }
+
+  .purchase-panel:not(:last-child)::after {
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, 50%) rotate(45deg);
   }
 }
 
