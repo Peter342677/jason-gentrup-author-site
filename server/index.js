@@ -40,11 +40,25 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'"],
+        // 'sha256-...' allowlists only the exact GTM bootstrap snippet below
+        // (not arbitrary inline scripts) -- see server/index.js git history
+        // for how it's derived if the snippet ever changes.
+        scriptSrc: [
+          "'self'",
+          "'sha256-4ywE0jgnzgUVqIWXWhDzXoIHTYxmKhwxSq27aTLCaus='",
+          'https://www.googletagmanager.com',
+        ],
         styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'],
         fontSrc: ["'self'", 'fonts.gstatic.com'],
-        imgSrc: ["'self'", 'data:'],
-        connectSrc: ["'self'"],
+        imgSrc: ["'self'", 'data:', 'https://www.googletagmanager.com', 'https://www.google-analytics.com'],
+        connectSrc: [
+          "'self'",
+          'https://www.googletagmanager.com',
+          'https://www.google-analytics.com',
+          'https://*.google-analytics.com',
+          'https://*.analytics.google.com',
+        ],
+        frameSrc: ["'self'", 'https://www.googletagmanager.com'],
       },
     },
   })
