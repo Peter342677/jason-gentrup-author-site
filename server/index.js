@@ -16,6 +16,25 @@ const distDir = join(__dirname, '..', 'dist');
 
 const app = express();
 
+if (isProd) {
+  // Behind Hostinger's proxy/CDN, so trust its X-Forwarded-* headers.
+  app.set('trust proxy', true);
+
+  // Canonical host is non-www — this is the Node-app equivalent of the
+  // .htaccess www/HTTPS rewrite (no Apache/.htaccess in front of this
+  // process, so the redirect has to live here instead).
+  app.use((req, res, next) => {
+    const host = req.headers.host || '';
+    const isWww = host.startsWith('www.');
+    const isHttp = req.headers['x-forwarded-proto'] === 'http';
+    if (isWww || isHttp) {
+      const targetHost = isWww ? host.slice(4) : host;
+      return res.redirect(301, `https://${targetHost}${req.originalUrl}`);
+    }
+    next();
+  });
+}
+
 app.use(
   helmet({
     contentSecurityPolicy: {
