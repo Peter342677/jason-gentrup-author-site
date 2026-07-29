@@ -649,3 +649,149 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Blog: breadcrumb + meta */
+.breadcrumb-trail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.breadcrumb-trail a:hover {
+  color: var(--gold-bright);
+}
+
+.breadcrumb-trail span[aria-current] {
+  color: var(--gold);
+}
+
+.post-meta {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+/* Blog index */
+.blog-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.blog-card {
+  display: block;
+  border-top: 1px solid rgba(239, 230, 212, 0.12);
+  padding-top: var(--space-md);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.blog-card:hover {
+  transform: translateX(6px);
+}
+
+.blog-card .post-meta {
+  margin-bottom: 0.6rem;
+}
+
+.blog-card h2 {
+  font-size: var(--fs-h3);
+  margin-bottom: 0.6rem;
+}
+
+.blog-card p {
+  max-width: 62ch;
+  margin-bottom: var(--space-sm);
+}
+
+/* Article body */
+.article-container {
+  max-width: 740px;
+}
+
+.article-body p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: var(--space-md);
+  color: var(--text-primary);
+}
+
+.article-body h2 {
+  font-size: var(--fs-h3);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.article-body blockquote {
+  margin: var(--space-lg) 0;
+  padding-left: var(--space-md);
+  border-left: 2px solid var(--gold);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+  color: var(--gold-bright);
+}
+
+/* Post CTA panel */
+.post-cta-panel {
+  background: var(--ink-2);
+  border: 1px solid rgba(217, 164, 65, 0.18);
+  border-radius: 14px;
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.post-cta-panel h2 {
+  margin-top: 0;
+}
+
+.post-cta-panel > p {
+  max-width: 52ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-cta-actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: var(--space-md) 0;
+}
+
+.related-links {
+  font-size: 0.9rem;
+  margin-top: var(--space-sm);
+}
+
+.related-links a {
+  color: var(--gold-bright);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Reviews page */
+.reviews-intro {
+  max-width: 68ch;
+}
+
+.review-note-card {
+  background: var(--ink-2);
+  border: 1px solid rgba(217, 164, 65, 0.15);
+  border-radius: 10px;
+  padding: var(--space-lg);
+  max-width: 68ch;
+}
+
+.review-note-card .btn {
+  margin-top: var(--space-sm);
+}

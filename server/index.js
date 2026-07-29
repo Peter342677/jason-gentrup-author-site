@@ -69,6 +69,26 @@ app.use(express.json({ limit: '20kb' }));
 app.use('/api/contact', contactRouter);
 
 if (isProd) {
+  // Explicit clean-URL routes must be registered before express.static: dist/blog
+  // is a real directory (blog/index.html etc.), and static's directory-redirect
+  // behavior would otherwise 301 /blog -> /blog/ before this handler ever runs.
+  const pages = {
+    '/': 'index.html',
+    '/about-the-book': 'about-the-book.html',
+    '/about-the-author': 'about-the-author.html',
+    '/contact-us': 'contact-us.html',
+    '/reviews': 'reviews.html',
+    '/blog': 'blog/index.html',
+    '/blog/reclaiming-coherence-in-a-fragmented-world': 'blog/reclaiming-coherence-in-a-fragmented-world.html',
+    '/blog/surviving-versus-living': 'blog/surviving-versus-living.html',
+    '/blog/meaning-reason-purpose-framework': 'blog/meaning-reason-purpose-framework.html',
+    '/blog/veteran-finding-direction-after-service': 'blog/veteran-finding-direction-after-service.html',
+  };
+
+  Object.entries(pages).forEach(([route, file]) => {
+    app.get(route, (req, res) => res.sendFile(join(distDir, file)));
+  });
+
   app.use(
     express.static(distDir, {
       maxAge: '1y',
@@ -80,17 +100,6 @@ if (isProd) {
       },
     })
   );
-
-  const pages = {
-    '/': 'index.html',
-    '/about-the-book': 'about-the-book.html',
-    '/about-the-author': 'about-the-author.html',
-    '/contact-us': 'contact-us.html',
-  };
-
-  Object.entries(pages).forEach(([route, file]) => {
-    app.get(route, (req, res) => res.sendFile(join(distDir, file)));
-  });
 }
 
 app.use((err, req, res, next) => {
