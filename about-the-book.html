@@ -151,7 +151,10 @@
     <section class="book-detail">
       <div class="container" style="display:grid; grid-template-columns: 0.7fr 1.3fr; gap: var(--space-lg); align-items: start;">
         <div class="photo-frame" data-reveal style="aspect-ratio: 683/1024;">
-          <img src="/assets/book-cover.jpg" alt="The Human Compass book cover" width="683" height="1024" loading="lazy" />
+          <picture>
+            <source srcset="/assets/book-cover.webp" type="image/webp" />
+            <img src="/assets/book-cover.jpg" alt="The Human Compass book cover" width="683" height="1024" loading="lazy" />
+          </picture>
         </div>
         <div data-reveal>
           <p>In a world filled with constant noise, endless information, and increasing disconnection, many people are searching for something deeper than answers. They are searching for orientation.</p>

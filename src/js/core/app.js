@@ -9,6 +9,7 @@ import { initScrollCompass } from '../components/compass.js';
 import { initLoader } from '../components/loader.js';
 import { initParticles } from '../components/particles.js';
 import { initPurchaseReveal } from '../components/panelReveal.js';
+import { initOutboundTracking } from './analytics.js';
 
 export function bootApp() {
   initLoader();
@@ -21,4 +22,5 @@ export function bootApp() {
   initScrollCompass();
   initParticles();
   initPurchaseReveal();
+  initOutboundTracking();
 }

@@ -86,7 +86,12 @@ if (isProd) {
   };
 
   Object.entries(pages).forEach(([route, file]) => {
-    app.get(route, (req, res) => res.sendFile(join(distDir, file)));
+    app.get(route, (req, res) => {
+      // Short-lived, must-revalidate cache for pre-rendered HTML: fast repeat
+      // navigations without serving stale content after a redeploy.
+      res.set('Cache-Control', 'public, max-age=600, must-revalidate');
+      res.sendFile(join(distDir, file));
+    });
   });
 
   app.use(
@@ -95,7 +100,7 @@ if (isProd) {
       immutable: true,
       setHeaders: (res, path) => {
         if (path.endsWith('.html')) {
-          res.setHeader('Cache-Control', 'no-cache');
+          res.setHeader('Cache-Control', 'public, max-age=600, must-revalidate');
         }
       },
     })

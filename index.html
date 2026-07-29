@@ -134,7 +134,7 @@
   <main id="main">
     <section class="hero">
       <div class="hero-video-bg" aria-hidden="true">
-        <video class="hero-video" muted loop playsinline preload="none" poster="/assets/video/hero-poster.jpg">
+        <video class="hero-video" muted loop playsinline preload="none" poster="/assets/video/hero-poster.webp">
           <source src="/assets/video/hero-bg-mobile.webm" media="(max-width: 760px)" type="video/webm" />
           <source src="/assets/video/hero-bg-mobile.mp4" media="(max-width: 760px)" type="video/mp4" />
           <source src="/assets/video/hero-bg.webm" type="video/webm" />
@@ -153,7 +153,10 @@
         </div>
         <div class="hero-book-stage">
           <div class="hero-book-canvas" id="hero-book-canvas"></div>
-          <img class="hero-book-fallback" src="/assets/book-cover.jpg" alt="The Human Compass book cover" width="280" height="420" />
+          <picture>
+            <source srcset="/assets/book-cover.webp" type="image/webp" />
+            <img class="hero-book-fallback" src="/assets/book-cover.jpg" alt="The Human Compass book cover" width="280" height="420" />
+          </picture>
           <span class="hero-book-hint" aria-hidden="true">Drag to rotate</span>
         </div>
       </div>
@@ -162,7 +165,10 @@
     <section class="about-teaser">
       <div class="container">
         <div class="photo-frame" data-reveal>
-          <img src="/assets/author-photo.jpg" alt="Jason Gentrup" width="600" height="800" loading="lazy" />
+          <picture>
+            <source srcset="/assets/author-photo.webp" type="image/webp" />
+            <img src="/assets/author-photo.jpg" alt="Jason Gentrup" width="600" height="800" loading="lazy" />
+          </picture>
         </div>
         <div class="section-head" data-reveal>
           <span class="eyebrow">About</span>
@@ -198,7 +204,7 @@
         <div class="trailer-frame" data-reveal>
           <video
             class="trailer-video"
-            poster="/assets/video/trailer-poster.jpg"
+            poster="/assets/video/trailer-poster.webp"
             preload="none"
             playsinline
           >

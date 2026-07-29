@@ -132,7 +132,10 @@
     <section class="author-detail">
       <div class="container" style="display:grid; grid-template-columns: 0.75fr 1.25fr; gap: var(--space-lg); align-items: start;">
         <div class="photo-frame" data-reveal data-parallax style="aspect-ratio: 768/1024;">
-          <img src="/assets/author-photo.jpg" alt="Jason Gentrup" width="768" height="1024" loading="lazy" />
+          <picture>
+            <source srcset="/assets/author-photo.webp" type="image/webp" />
+            <img src="/assets/author-photo.jpg" alt="Jason Gentrup" width="768" height="1024" loading="lazy" />
+          </picture>
         </div>
         <div data-reveal>
           <p>Raised in Belle Fourche, South Dakota, Jason Gentrup&rsquo;s journey has taken him far beyond the geographic center of the United States. After serving in the United States Marine Corps and completing deployments to Iraq and Afghanistan, he faced the challenges of loss, PTSD, single parenthood, and personal transformation.</p>
