@@ -31,6 +31,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- LCP element: the hero book-cover fallback image behind the 3D canvas. Lighthouse
+       showed it losing the fight for throttled mobile bandwidth against gsap.js and the
+       page's own JS bundles loading in parallel — this preload hint plus fetchpriority on
+       the <img> itself (below) tells the browser to fetch it first. -->
+  <link rel="preload" as="image" href="/assets/book-cover.webp" type="image/webp" fetchpriority="high" />
 
   <script type="application/ld+json">
   {
@@ -155,7 +160,7 @@
           <div class="hero-book-canvas" id="hero-book-canvas"></div>
           <picture>
             <source srcset="/assets/book-cover.webp" type="image/webp" />
-            <img class="hero-book-fallback" src="/assets/book-cover.jpg" alt="The Human Compass book cover" width="280" height="420" />
+            <img class="hero-book-fallback" src="/assets/book-cover.jpg" alt="The Human Compass book cover" width="280" height="420" fetchpriority="high" />
           </picture>
           <span class="hero-book-hint" aria-hidden="true">Drag to rotate</span>
         </div>
@@ -173,7 +178,7 @@
         <div class="section-head" data-reveal>
           <span class="eyebrow">About</span>
           <h2>Jason Gentrup</h2>
-          <p>Raised in Belle Fourche, South Dakota, Jason Gentrup&rsquo;s journey has taken him far beyond the geographic center of the United States. After serving in the United States Marine Corps and completing deployments to Iraq and Afghanistan, he faced the challenges of loss, PTSD, single parenthood, and personal transformation.</p>
+          <p>Raised in Belle Fourche, South Dakota, Jason Gentrup&rsquo;s journey has taken him far beyond the geographic center of the United States. After serving in the United States Marine Corps and completing deployments to Iraq and Afghanistan, he faced <a href="/blog/veteran-finding-direction-after-service">the challenges of loss, PTSD, single parenthood, and personal transformation</a>.</p>
           <p>His path led him through nursing studies, massage therapy, world travel across six continents and more than 30 countries, and academic pursuits in Political Science, Sociology, and Urban &amp; Regional Planning. Along the way, he developed a deep understanding of the human condition through years of bodywork, conversations with people from all walks of life, and firsthand experiences across cultures and communities.</p>
           <a class="btn btn-outline" href="/about-the-author">About the Author</a>
         </div>
@@ -187,7 +192,7 @@
         <div class="section-head center" data-reveal>
           <span class="eyebrow">About The Book</span>
           <h2>The Human Compass</h2>
-          <p>In a world filled with constant noise, endless information, and increasing disconnection, many people are searching for something deeper than answers. They are searching for orientation.</p>
+          <p>In a world filled with constant noise, endless information, and increasing disconnection, many people are searching for something deeper than answers. They are searching for orientation. Read the introductory essay on <a href="/blog/reclaiming-coherence-in-a-fragmented-world">reclaiming coherence in a fragmented world</a>.</p>
           <a class="btn btn-outline" href="/about-the-book">About the Book</a>
         </div>
       </div>
