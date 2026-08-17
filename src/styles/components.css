@@ -635,6 +635,10 @@
     flex-direction: column;
   }
 
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+
   .purchase-panel:not(:last-child)::before {
     top: auto;
     bottom: 0;
@@ -804,6 +808,60 @@
 
 .review-note-card .btn {
   margin-top: var(--space-sm);
+}
+
+.reviews-summary {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.reviews-summary .review-stars {
+  font-size: 1.5rem;
+}
+
+.reviews-summary-text {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+.review-card {
+  background: var(--ink-2);
+  border: 1px solid rgba(217, 164, 65, 0.15);
+  border-radius: 10px;
+  padding: var(--space-lg);
+}
+
+.review-stars {
+  display: block;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  margin-bottom: var(--space-sm);
+}
+
+.review-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--cream);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin-bottom: var(--space-sm);
+}
+
+.review-meta {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0;
 }
 
 /* Spanish edition callout */

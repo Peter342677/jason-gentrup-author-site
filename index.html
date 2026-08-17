@@ -69,16 +69,65 @@
       { "@type": "Book", "bookFormat": "https://schema.org/Paperback", "isbn": "978-1-78280-808-4" },
       { "@type": "Book", "bookFormat": "https://schema.org/Hardcover" }
     ],
-    "workTranslation": {
-      "@type": "Book",
-      "name": "El Compás Humano: Recuperar la Coherencia en un Mundo Fragmentado",
-      "inLanguage": "es",
-      "author": { "@type": "Person", "name": "Jason Gentrup", "url": "https://authorjasongentrup.com/about-the-author" },
-      "bookFormat": "https://schema.org/EBook",
-      "image": "https://authorjasongentrup.com/assets/book-cover-es.jpg",
-      "url": "https://www.amazon.com/dp/B0HF5L4LV7",
-      "potentialAction": { "@type": "ReadAction", "target": "https://www.amazon.com/dp/B0HF5L4LV7" }
-    }
+    "workTranslation": [
+      {
+        "@type": "Book",
+        "name": "El Compás Humano: Recuperar la Coherencia en un Mundo Fragmentado",
+        "inLanguage": "es",
+        "author": { "@type": "Person", "name": "Jason Gentrup", "url": "https://authorjasongentrup.com/about-the-author" },
+        "bookFormat": "https://schema.org/EBook",
+        "image": "https://authorjasongentrup.com/assets/book-cover-es.jpg",
+        "url": "https://www.amazon.com/dp/B0HF5L4LV7",
+        "potentialAction": { "@type": "ReadAction", "target": "https://www.amazon.com/dp/B0HF5L4LV7" }
+      },
+      {
+        "@type": "Book",
+        "name": "Der Menschliche Kompass: Kohärenz Zurückgewinnen in einer Fragmentierten Welt",
+        "inLanguage": "de",
+        "author": { "@type": "Person", "name": "Jason Gentrup", "url": "https://authorjasongentrup.com/about-the-author" },
+        "image": "https://authorjasongentrup.com/assets/book-cover-de.jpg"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "bestRating": "5",
+      "reviewCount": "4"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "name": "Top tier self reflection tool",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Sara Barrett" },
+        "datePublished": "2026-07-27",
+        "reviewBody": "I was wildly impressed with this piece of work. The concepts aren't novel per se, but they're presented in a highly logical and personally engaging way. It's informative as well as vindicating and uplifting."
+      },
+      {
+        "@type": "Review",
+        "name": "A Book That Makes You Pause",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Rose Reyes" },
+        "datePublished": "2026-07-12",
+        "reviewBody": "Sometimes the right book finds you at the right time, and The Human Compass was that kind of read for me. It doesn't pretend to have all the answers. Instead, it encourages you to slow down, reflect, and think about where you've been, where you're headed, and what really matters."
+      },
+      {
+        "@type": "Review",
+        "name": "Human compass",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Tamra Farrington" },
+        "datePublished": "2026-07-27",
+        "reviewBody": "In a world so disconnected from each other with our technology and social distancing, this book helps bring some of us back together with deep thinking and psychology. It helps you understand how the mind and body are supposed to be supported and connected to other minds."
+      },
+      {
+        "@type": "Review",
+        "name": "Beautiful read",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Jess" },
+        "datePublished": "2026-06-28",
+        "reviewBody": "Some books entertain you. Some teach you something. And then there are the rare ones that quietly pull apart everything you thought you knew about yourself and hand it back to you in a completely different shape. This was one of those books."
+      }
+    ]
   }
   </script>
   <script type="application/ld+json">
@@ -279,6 +328,22 @@
           <h2>El Compás Humano</h2>
           <p>Recuperar la Coherencia en un Mundo Fragmentado. The Spanish-language Kindle edition is now available.</p>
           <a class="btn btn-outline" href="https://www.amazon.com/dp/B0HF5L4LV7" target="_blank" rel="noopener noreferrer">Shop the Spanish Edition</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="german-edition">
+      <div class="container spanish-edition-layout">
+        <div class="photo-frame" data-reveal>
+          <picture>
+            <source srcset="/assets/book-cover-de.webp" type="image/webp" />
+            <img src="/assets/book-cover-de.jpg" alt="Der Menschliche Kompass book cover" width="683" height="1024" loading="lazy" />
+          </picture>
+        </div>
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Auf Deutsch: Bald Verfügbar</span>
+          <h2>Der Menschliche Kompass</h2>
+          <p>Kohärenz Zurückgewinnen in einer Fragmentierten Welt. The German-language edition is coming soon.</p>
         </div>
       </div>
     </section>
