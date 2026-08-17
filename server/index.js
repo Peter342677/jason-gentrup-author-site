@@ -83,6 +83,8 @@ if (isProd) {
     '/blog/surviving-versus-living': 'blog/surviving-versus-living.html',
     '/blog/meaning-reason-purpose-framework': 'blog/meaning-reason-purpose-framework.html',
     '/blog/veteran-finding-direction-after-service': 'blog/veteran-finding-direction-after-service.html',
+    '/blog/identity-masks-and-fluidity': 'blog/identity-masks-and-fluidity.html',
+    '/blog/what-schools-forgot': 'blog/what-schools-forgot.html',
   };
 
   Object.entries(pages).forEach(([route, file]) => {

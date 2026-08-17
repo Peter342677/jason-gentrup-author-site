@@ -28,6 +28,8 @@ export default defineConfig({
         blogSurviving: resolve(__dirname, 'blog/surviving-versus-living.html'),
         blogFramework: resolve(__dirname, 'blog/meaning-reason-purpose-framework.html'),
         blogVeteran: resolve(__dirname, 'blog/veteran-finding-direction-after-service.html'),
+        blogIdentity: resolve(__dirname, 'blog/identity-masks-and-fluidity.html'),
+        blogSchools: resolve(__dirname, 'blog/what-schools-forgot.html'),
       },
       output: {
         manualChunks: {
