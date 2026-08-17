@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Punchier stagger reveal for the purchase panels — slides up with a
+ * Punchier stagger reveal for the purchase panels: slides up with a
  * slight scale as the section enters on scroll down, instead of the
  * generic fade used elsewhere.
  */

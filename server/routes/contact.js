@@ -70,7 +70,7 @@ router.post('/', contactLimiter, async (req, res) => {
   const to = process.env.CONTACT_TO_EMAIL || 'info@authorjasongentrup.com';
 
   if (!transporter) {
-    console.log('[contact] SMTP not configured — logging submission instead:', data);
+    console.log('[contact] SMTP not configured, logging submission instead:', data);
     return res.status(200).json({ success: true });
   }
 
@@ -79,8 +79,8 @@ router.post('/', contactLimiter, async (req, res) => {
       from: process.env.CONTACT_FROM_EMAIL || `"The Human Compass" <no-reply@authorjasongentrup.com>`,
       to,
       replyTo: data.email,
-      subject: `New message from ${data.name} — The Human Compass`,
-      text: `Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || '—'}\n\n${data.message}`,
+      subject: `New message from ${data.name} via The Human Compass`,
+      text: `Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || 'Not provided'}\n\n${data.message}`,
     });
     res.status(200).json({ success: true });
   } catch (err) {

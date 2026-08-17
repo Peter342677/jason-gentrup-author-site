@@ -261,7 +261,7 @@
   }
 }
 
-/* Purchase panels — a diptych echoing the cover's stone-to-dawn split */
+/* Purchase panels: a diptych echoing the cover's stone-to-dawn split */
 .purchase-diptych {
   display: flex;
   margin-top: var(--space-lg);
@@ -283,7 +283,7 @@
   transition: background var(--dur-med) var(--ease-out);
 }
 
-/* Diamond-seam divider between panels — scales to any panel count */
+/* Diamond-seam divider between panels: scales to any panel count */
 .purchase-panel:not(:last-child)::before {
   content: '';
   position: absolute;

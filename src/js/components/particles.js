@@ -1,6 +1,6 @@
 /**
  * A persistent field of glowing gold motes drifting behind the entire
- * site — fixed to the viewport (not the document), so it reads as an
+ * site, fixed to the viewport (not the document), so it reads as an
  * ambient light wherever you scroll. Each mote pulses gently and drifts
  * continuously, and the whole field gently repels away from the cursor.
  */

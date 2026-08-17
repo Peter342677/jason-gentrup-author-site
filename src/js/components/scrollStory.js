@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 /**
  * The book's thesis, staged as motion: scattered fragments (the hero's
  * shattering stone) drift together into the compass diamond as the reader
- * scrolls out of the hero — fragmentation resolving into coherence.
+ * scrolls out of the hero: fragmentation resolving into coherence.
  */
 export function initFragmentStory() {
   const target = document.querySelector('[data-fragment-target]');

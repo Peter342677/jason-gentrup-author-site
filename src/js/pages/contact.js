@@ -75,7 +75,7 @@ if (form) {
       }
 
       form.reset();
-      statusEl.textContent = "Thank you — your message has been sent. We'll be in touch soon.";
+      statusEl.textContent = "Thank you. Your message has been sent. We'll be in touch soon.";
       statusEl.classList.add('success');
     } catch (err) {
       statusEl.textContent = err.message || 'Something went wrong. Please try again.';

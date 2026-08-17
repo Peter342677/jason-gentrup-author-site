@@ -9,7 +9,7 @@ import contactRouter from './routes/contact.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const isProd = process.env.NODE_ENV === 'production';
 // In dev, a shared launch harness may inject a generic PORT matching the Vite
-// port — never honor it here, or the API server collides with the Vite dev
+// port: never honor it here, or the API server collides with the Vite dev
 // server. In prod (no Vite process), hosting platforms set PORT, so honor it.
 const PORT = isProd ? process.env.PORT || process.env.API_PORT || 3110 : process.env.API_PORT || 3110;
 const distDir = join(__dirname, '..', 'dist');
@@ -20,7 +20,7 @@ if (isProd) {
   // Behind Hostinger's proxy/CDN, so trust its X-Forwarded-* headers.
   app.set('trust proxy', true);
 
-  // Canonical host is non-www — this is the Node-app equivalent of the
+  // Canonical host is non-www: this is the Node-app equivalent of the
   // .htaccess www/HTTPS rewrite (no Apache/.htaccess in front of this
   // process, so the redirect has to live here instead).
   app.use((req, res, next) => {
