@@ -10,6 +10,7 @@ import { initLoader } from '../components/loader.js';
 import { initParticles } from '../components/particles.js';
 import { initPurchaseReveal } from '../components/panelReveal.js';
 import { initOutboundTracking } from './analytics.js';
+import { initReviewSliders } from '../components/reviewSlider.js';
 
 export function bootApp() {
   initLoader();
@@ -23,4 +24,5 @@ export function bootApp() {
   initParticles();
   initPurchaseReveal();
   initOutboundTracking();
+  initReviewSliders();
 }

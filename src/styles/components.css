@@ -635,8 +635,8 @@
     flex-direction: column;
   }
 
-  .review-grid {
-    grid-template-columns: 1fr;
+  .review-slider .review-card {
+    flex-basis: 88%;
   }
 
   .purchase-panel:not(:last-child)::before {
@@ -827,10 +827,60 @@
   margin-top: 0.4rem;
 }
 
-.review-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.review-slider-block {
+  margin-top: var(--space-lg);
+}
+
+.review-slider {
+  display: flex;
   gap: var(--space-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 2px;
+}
+
+.review-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.review-slider .review-card {
+  scroll-snap-align: start;
+  flex: 0 0 calc(50% - var(--space-md) / 2);
+  min-width: 0;
+}
+
+.review-slider-nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.review-nav-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(239, 230, 212, 0.25);
+  background: transparent;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color var(--dur-fast), color var(--dur-fast), opacity var(--dur-fast);
+}
+
+.review-nav-btn:hover:not(:disabled) {
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+
+.review-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
 }
 
 .review-card {
