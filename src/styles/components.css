@@ -604,8 +604,18 @@
   .about-teaser .container,
   .contact-layout,
   .book-detail .container,
-  .author-detail .container {
+  .author-detail .container,
+  .spanish-edition-layout {
     grid-template-columns: 1fr !important;
+  }
+
+  .spanish-edition-layout .photo-frame {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .spanish-edition-layout .section-head {
+    text-align: center;
   }
 
   .chapter-list {
@@ -794,4 +804,23 @@
 
 .review-note-card .btn {
   margin-top: var(--space-sm);
+}
+
+/* Spanish edition callout */
+.spanish-edition-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.spanish-edition-layout .photo-frame {
+  aspect-ratio: 683 / 1024;
+}
+
+.spanish-edition-layout .section-head {
+  text-align: left;
+  max-width: none;
 }
