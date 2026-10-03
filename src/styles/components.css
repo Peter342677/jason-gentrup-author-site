@@ -417,6 +417,44 @@
   background: var(--ink-2);
 }
 
+/* Podcast thumbnail: same frame treatment as the trailer, but the whole
+   frame is a link out to the interview and the image is cropped wider than 16:9. */
+.podcast-frame {
+  display: block;
+  position: relative;
+  max-width: 920px;
+  margin: var(--space-lg) auto 0;
+  aspect-ratio: 1600 / 733;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(217, 164, 65, 0.22);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.6);
+  background: var(--ink-2);
+}
+
+.podcast-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.podcast-frame:hover img {
+  transform: scale(1.03);
+}
+
+.podcast-frame .trailer-play {
+  pointer-events: none;
+}
+
+.podcast-frame:hover .trailer-play {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.podcast-cta {
+  margin-top: var(--space-md);
+}
+
 .trailer-video {
   width: 100%;
   height: 100%;
