@@ -30,6 +30,8 @@ export default defineConfig({
         blogVeteran: resolve(__dirname, 'blog/veteran-finding-direction-after-service.html'),
         blogIdentity: resolve(__dirname, 'blog/identity-masks-and-fluidity.html'),
         blogSchools: resolve(__dirname, 'blog/what-schools-forgot.html'),
+        blogBurnout: resolve(__dirname, 'blog/digital-burnout-and-overstimulation.html'),
+        blogAiAnxiety: resolve(__dirname, 'blog/ai-anxiety-and-finding-purpose.html'),
       },
       output: {
         manualChunks: {

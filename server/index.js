@@ -85,6 +85,8 @@ if (isProd) {
     '/blog/veteran-finding-direction-after-service': 'blog/veteran-finding-direction-after-service.html',
     '/blog/identity-masks-and-fluidity': 'blog/identity-masks-and-fluidity.html',
     '/blog/what-schools-forgot': 'blog/what-schools-forgot.html',
+    '/blog/digital-burnout-and-overstimulation': 'blog/digital-burnout-and-overstimulation.html',
+    '/blog/ai-anxiety-and-finding-purpose': 'blog/ai-anxiety-and-finding-purpose.html',
   };
 
   Object.entries(pages).forEach(([route, file]) => {
